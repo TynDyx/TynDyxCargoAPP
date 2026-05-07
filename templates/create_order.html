@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yangi Order - TynDyx</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
+    <link rel="stylesheet" href="/static/creating.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Yangi Buyurtma Yaratish</h2>
+            <p>Buyurtma turini tanlang va ma'lumotlarini kiriting.</p>
+        </div>
+
+        <form action="/create-order" method="POST" id="orderForm">
+            <div class="type-selector">
+                <label class="radio-card">
+                    <input type="radio" name="order_type" value="normal" checked onclick="toggleOrderType(false)">
+                    <div class="radio-content">
+                        <div class="check-icon"></div>
+                        <span class="label">Oddiy</span>
+                        <span class="price">5,000 so'm</span>
+                    </div>
+                </label>
+                <label class="radio-card">
+                    <input type="radio" name="order_type" value="timed" onclick="toggleOrderType(true)">
+                    <div class="radio-content">
+                        <div class="check-icon"></div>
+                        <span class="label">Vaqtli</span>
+                        <span class="price">10,000 so'm</span>
+                    </div>
+                </label>
+            </div>
+
+            <div id="info-box" class="info-box">
+                <span id="info-text">💡 Kerakli vaqtda o'zingizning Buyurtmangizni o'chirasiz.</span>
+            </div>
+
+            <div id="time-section" class="fade-in" style="display: none;">
+                <div class="time-grid">
+                    <div class="form-group">
+                        <label>Boshlanish vaqti</label>
+                        <div class="input-wrapper">
+                            <input type="text" name="start_time" placeholder="Sana va vaqt">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Tugash vaqti</label>
+                        <div class="input-wrapper">
+                            <input type="text" name="end_time" placeholder="Sana va vaqt">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Buyurtmangiz Tavsifi</label>
+                <textarea name="description" id="description" rows="5"
+                          placeholder="Yuk haqida batafsil ma'lumot qoldiring...(Og'irligi, qayerdan qayergaligi...)"></textarea>
+                <div class="footer-meta">
+                    <small id="wordError">⚠️ Kamida 10 ta so'z yozishingiz kerak</small>
+                    <small id="wordCount">So'zlar: 0 / 10</small>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a href="/dashboard" class="btn btn-secondary">Bekor qilish</a>
+                <button type="submit" id="submitBtn" class="btn btn-primary" disabled>Orderni Yaratish</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/uz.js"></script>
+<script>
+    // Flatpickr sozlamalari
+    const config = {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        time_24hr: true,
+        locale: "uz",
+        minDate: "today",
+        disableMobile: "true"
+    };
+    flatpickr("input[name='start_time']", config);
+    flatpickr("input[name='end_time']", config);
+
+    // Bo'limni ko'rsatish/yashirish
+    function toggleOrderType(isTimed) {
+        const timeSection = document.getElementById('time-section');
+        const infoText = document.getElementById('info-text');
+
+        if (isTimed) {
+            timeSection.style.display = 'block';
+            infoText.innerText = "📅 Buyurtma amal qilish muddatini belgilang.";
+        } else {
+            timeSection.style.display = 'none';
+            infoText.innerText = "💡 Kerakli vaqtda o'zingizning Buyurtmangizni o'chiring.";
+        }
+    }
+
+    // So'zlar sanog'i va validation
+    const textarea = document.getElementById('description');
+    const wordCountText = document.getElementById('wordCount');
+    const wordError = document.getElementById('wordError');
+    const submitBtn = document.getElementById('submitBtn');
+
+    textarea.addEventListener('input', function () {
+        const words = this.value.trim().split(/\s+/).filter(word => word.length > 0);
+        const count = words.length;
+
+        wordCountText.innerText = `So'zlar: ${count} / 10`;
+
+        if (count >= 10) {
+            wordCountText.style.color = "#27ae60";
+            wordError.style.opacity = "0";
+            submitBtn.disabled = false;
+        } else {
+            wordCountText.style.color = "#636e72";
+            wordError.style.opacity = "1";
+            submitBtn.disabled = true;
+        }
+    });
+</script>
+</body>
+</html>

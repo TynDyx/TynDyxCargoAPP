@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TynDyx Cargo - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/auth.css">
+</head>
+<body>
+
+<div class="login-card">
+    <h2>Login</h2>
+    {% if error %}
+    <div class="error-alert">
+        <i class="fas fa-exclamation-circle"></i> {{ error }}
+    </div>
+    {% endif %}
+    
+    <form action="/login" method="post" id="loginForm">
+
+        <div class="input-group">
+            <div class="phone-input-container">
+                <select class="country-code-select" id="country_code">
+                    <option value="+998">🇺🇿 +998</option>
+                    <option value="+7">🇷🇺 +7</option>
+                    <option value="+1">🇺🇸 +1</option>
+                </select>
+                <input type="tel" id="phone_raw" class="phone-input" placeholder="90 123 45 67" required>
+                <input type="hidden" name="phone" id="full_phone">
+            </div>
+        </div>
+
+        <div class="input-group">
+            <i class="fas fa-lock input-icon"></i>
+            <input type="password" name="password" placeholder="Parolingiz" required>
+        </div>
+
+        <button type="submit" class="btn-submit">
+            <i class="fas fa-sign-in-alt"></i> Kirish
+        </button>
+    </form>
+
+    <a href="" class="forgot-password">Parolni unutdingizmi?</a>
+
+
+    <p class="register-text">
+        Akkountingiz yo'qmi? <a href="/register">Ro'yxatdan o'tish</a>
+    </p>
+</div>
+
+<script>
+    const loginForm = document.getElementById('loginForm');
+    const phoneRawInput = document.getElementById('phone_raw');
+    const countryCodeSelect = document.getElementById('country_code');
+    const fullPhoneInput = document.getElementById('full_phone');
+
+    loginForm.addEventListener('submit', function (e) {
+        // 1. Kod va raqamni birlashtirish
+        const combinedPhone = countryCodeSelect.value + phoneRawInput.value.replace(/\s+/g, '');
+
+        // 2. Yashirin inputga qiymat berish
+        fullPhoneInput.value = combinedPhone;
+
+        // 3. Toza raqamli input serverga ketmasligi uchun name'ni vaqtincha o'chirish
+        phoneRawInput.removeAttribute('name');
+    });
+
+    // Orqaga qaytganda (back button) input holatini tiklash
+    window.addEventListener('pageshow', function () {
+        // Inputni qayta nomlash (agar kerak bo'lsa)
+        phoneRawInput.setAttribute('name', 'phone_display');
+        // Yashirin maydonni tozalash
+        fullPhoneInput.value = '';
+    });
+</script>
+</body>
+</html>

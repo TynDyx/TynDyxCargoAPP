@@ -1,0 +1,194 @@
+:root {
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --bg: #f1f5f9;
+    --card: #ffffff;
+    --text: #1e293b;
+    --border: #e2e8f0;
+}
+
+body {
+    background-color: var(--bg);
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.profile-card {
+    background: var(--card);
+    width: 100%;
+    max-width: 440px;
+    padding: 2rem;
+    border-radius: 24px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: var(--text);
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Photo Styling */
+.photo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.photo-wrapper {
+    position: relative;
+    width: 110px;
+    height: 110px;
+}
+
+.photo-wrapper img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary);
+    padding: 3px;
+    background: white;
+}
+
+.upload-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: var(--primary);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 2px solid white;
+}
+
+#photo { display: none; }
+
+.photo-text {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-top: 10px;
+}
+
+/* Inputs */
+.input-group {
+    margin-bottom: 1.25rem;
+}
+
+label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text);
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: 0.2s;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.readonly-field {
+    background-color: #f8fafc;
+    color: #94a3b8;
+    cursor: not-allowed;
+}
+
+/* Buttons */
+.button-group {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 12px;
+    margin-top: 1.5rem;
+}
+
+.btn {
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s;
+}
+
+.btn-save {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-save:hover { background: var(--primary-hover); }
+
+.btn-cancel {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.btn-cancel:hover { background: #e2e8f0; }
+/* Rasmni o'chirish tugmasi uchun maxsus stil */
+.delete-btn {
+    background-color: transparent;
+    color: #ef4444; /* Qizil rang */
+    border: 1px solid #fee2e2;
+    padding: 6px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 8px;
+    font-family: 'Inter', sans-serif;
+}
+
+.delete-btn:hover {
+    background-color: #fef2f2;
+    border-color: #fecaca;
+    color: #dc2626;
+    box-shadow: 0 2px 4px rgba(239, 68, 68, 0.05);
+}
+
+.delete-btn:active {
+    transform: scale(0.97);
+}
+
+/* Photo container ichidagi elementlarni tekislash */
+.photo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.photo-text {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-top: 10px;
+    margin-bottom: 4px;
+}
+
+[style*="display: none"] {
+    display: none !important;
+}}

@@ -1,0 +1,88 @@
+:root {
+    --primary: #2563eb;
+    --bg: #f8fafc;
+    --text: #1e293b;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.sms-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.icon-circle {
+    width: 70px;
+    height: 70px;
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    margin: 0 auto 1.5rem;
+}
+
+.otp-input-wrapper input {
+    width: 100%;
+    height: 60px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 32px;
+    text-align: center;
+    letter-spacing: 15px;
+    margin: 1.5rem 0;
+    transition: all 0.3s;
+}
+
+.otp-input-wrapper input:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.btn-verify {
+    width: 100%;
+    padding: 12px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-verify:hover { background: #1d4ed8; }
+
+.error-msg {
+    background: #fef2f2;
+    color: #b91c1c;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 1rem;
+}
+
+.btn-cancel {
+    display: block;
+    margin-top: 20px;
+    color: #64748b;
+    text-decoration: none;
+    font-size: 14px;
+}

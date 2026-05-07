@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TynDyx Cargo - Order View</title>
+    <link rel="stylesheet" href="/static/view.css">
+    <link rel="stylesheet" href="/static/theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="header-nav">
+        <a href="/dashboard" class="back-btn">
+            <i class="fas fa-arrow-left"></i> <span data-i18n="back">Orqaga</span>
+        </a>
+
+    </div>
+
+    <div class="grid-layout">
+        <div class="card">
+            <div class="card-top">
+                {% if order[1] == 1 %}
+                <span class="status-badge active" data-i18n="active">Aktiv</span>
+                {% else %}
+                <span class="status-badge inactive" data-i18n="inactive">Aktiv emas</span>
+                {% endif %}
+            </div>
+
+            {% if order[1] == 1 %}
+            <h3 data-i18n="order_details">📦 Buyurtma ma'lumotlari</h3>
+
+            <div class="description-box">
+                <p>{{ order[0] }}</p>
+            </div>
+
+            {% if user.role == "driver" %}
+            <div class="feedback-section">
+                <h4><i class="fas fa-comment-dots"></i> <span
+                        data-i18n="feedback_title">Haydovchi uchun fikr qoldirish</span>
+                </h4>
+                <form action="/send-feedback/{{ order[2] }}" method="POST">
+                    <textarea name="comment" class="input-style" data-i18n="write_feedback"
+                              placeholder="Fikringizni yozing...(Misol: Narx, Qachon bora olishingiz yoki fikringiz)"></textarea>
+                    <button type="submit" class="submit-btn" data-i18n="send">Yuborish</button>
+                </form>
+            </div>
+            {% endif %}
+            {% else%}
+            <h3 data-i18n="order_details">📦 Buyurtma ma'lumotlari</h3>
+
+            <div class="description-box">
+                <p>{{ order[0] }}</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<script src="/static/app.js"></script>
+</body>
+</html>

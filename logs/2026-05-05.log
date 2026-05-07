@@ -1,0 +1,37 @@
+2026-05-05 17:04:12,054 [INFO] TynDyx_Cargo: Database muvaffaqiyatli ulandi
+2026-05-05 17:04:12,082 [INFO] TynDyx_Cargo: TynDyx dasturi to'liq ishga tushdi
+2026-05-05 17:11:36,306 [INFO] TynDyx_Cargo: Database muvaffaqiyatli ulandi
+2026-05-05 17:11:36,351 [INFO] TynDyx_Cargo: TynDyx dasturi to'liq ishga tushdi
+2026-05-05 17:11:36,627 [INFO] TynDyx_Cargo: Dashboard yuklandi: User ID 2 | Role: manager | Orders count: 3 | Unread notifs: 0
+2026-05-05 17:14:25,380 [INFO] TynDyx_Cargo: Database muvaffaqiyatli ulandi
+2026-05-05 17:14:25,418 [INFO] TynDyx_Cargo: TynDyx dasturi to'liq ishga tushdi
+2026-05-05 17:14:25,673 [INFO] TynDyx_Cargo: Dashboard yuklandi: User ID 2 | Role: manager | Orders count: 1 | Unread notifs: 0
+2026-05-05 17:15:05,772 [INFO] TynDyx_Cargo: Foydalanuvchi profiliga kirdi: ID 2 (manager)
+2026-05-05 17:15:11,436 [INFO] TynDyx_Cargo: Dashboard yuklandi: User ID 2 | Role: manager | Orders count: 1 | Unread notifs: 0
+2026-05-05 17:15:16,414 [INFO] TynDyx_Cargo: Foydalanuvchi profiliga kirdi: ID 2 (manager)
+2026-05-05 17:15:23,111 [INFO] TynDyx_Cargo: Dashboard yuklandi: User ID 2 | Role: manager | Orders count: 1 | Unread notifs: 0
+2026-05-05 17:16:56,931 [INFO] TynDyx_Cargo: Database muvaffaqiyatli ulandi
+2026-05-05 17:16:56,985 [INFO] TynDyx_Cargo: TynDyx dasturi to'liq ishga tushdi
+2026-05-05 17:17:06,441 [INFO] TynDyx_Cargo: Dashboard yuklandi: User ID 2 | Role: manager | Orders count: 3 | Unread notifs: 0
+2026-05-05 17:31:05,138 [INFO] TynDyx_Cargo: Dashboard yuklandi: User ID 3 | Role: manager | Orders count: 3 | Unread notifs: 0
+2026-05-05 17:31:21,058 [INFO] TynDyx_Cargo: Buyurtma o'chirildi (Inaktiv): Order ID 3 | Manager ID 3
+2026-05-05 17:31:42,298 [WARNING] TynDyx_Cargo: Dashboardga ruxsatsiz kirish urinishi: Foydalanuvchi tizimga kirmagan
+2026-05-05 17:34:40,339 [INFO] TynDyx_Cargo: Database muvaffaqiyatli ulandi
+2026-05-05 17:34:40,358 [INFO] TynDyx_Cargo: TynDyx dasturi to'liq ishga tushdi
+2026-05-05 17:35:16,436 [INFO] TynDyx_Cargo: Login muvaffaqiyatli: +998111111111 (ID: 1)
+2026-05-05 17:35:16,581 [INFO] TynDyx_Cargo: Dashboard yuklandi: User ID 1 | Role: driver | Orders count: 3 | Unread notifs: 0
+2026-05-05 17:49:22,308 [INFO] TynDyx_Cargo: Database muvaffaqiyatli ulandi
+2026-05-05 17:49:22,346 [INFO] TynDyx_Cargo: TynDyx dasturi to'liq ishga tushdi
+2026-05-05 17:49:48,381 [INFO] TynDyx_Cargo: Database muvaffaqiyatli ulandi
+2026-05-05 17:49:48,418 [INFO] TynDyx_Cargo: TynDyx dasturi to'liq ishga tushdi
+2026-05-05 17:50:02,118 [INFO] TynDyx_Cargo: Database muvaffaqiyatli ulandi
+2026-05-05 17:50:02,200 [INFO] TynDyx_Cargo: TynDyx dasturi to'liq ishga tushdi
+2026-05-05 17:50:05,439 [INFO] TynDyx_Cargo: Database muvaffaqiyatli ulandi
+2026-05-05 17:50:05,488 [INFO] TynDyx_Cargo: TynDyx dasturi to'liq ishga tushdi
+2026-05-05 17:50:18,989 [INFO] TynDyx_Cargo: Database muvaffaqiyatli ulandi
+2026-05-05 17:50:19,027 [INFO] TynDyx_Cargo: TynDyx dasturi to'liq ishga tushdi
+2026-05-05 17:52:53,274 [INFO] TynDyx_Cargo: Database muvaffaqiyatli ulandi
+2026-05-05 17:52:53,300 [INFO] TynDyx_Cargo: TynDyx dasturi to'liq ishga tushdi
+2026-05-05 17:55:07,150 [INFO] TynDyx_Cargo: Database muvaffaqiyatli ulandi
+2026-05-05 17:55:07,173 [INFO] TynDyx_Cargo: TynDyx dasturi to'liq ishga tushdi
+2026-05-05 18:04:14,129 [INFO] TynDyx_Cargo: Dashboard yuklandi: User ID 1 | Role: driver | Orders count: 0 | Unread notifs: 0

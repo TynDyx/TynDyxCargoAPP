@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TynDyx Cargo - Order View</title>
+    <link rel="stylesheet" href="/static/view.css">
+    <link rel="stylesheet" href="/static/theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .status-container {
+            margin-bottom: 20px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-badge.active {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
+        }
+
+        .status-badge.inactive {
+            background: #f1f2f6;
+            color: #a4b0be;
+            border: 1px solid #dfe4ea;
+        }
+
+        .offers-section {
+            margin-top: 30px;
+            border-top: 2px solid #f1f2f6;
+            padding-top: 20px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            color: #2f3542;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .offer-card {
+            background: #ffffff;
+            border: 1px solid #e1e8ed;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .driver-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .driver-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #f1f2f6;
+        }
+
+        .driver-details h5 {
+            margin: 0;
+            font-size: 15px;
+            color: #2f3542;
+        }
+
+        .offer-msg {
+            margin: 4px 0 0;
+            font-size: 13px;
+            color: #747d8c;
+            line-height: 1.4;
+        }
+
+        .offer-status-label {
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 800;
+            margin-left: 8px;
+        }
+
+        .status-pending {
+            background: #fff9db;
+            color: #f59f00;
+        }
+
+        .status-accepted {
+            background: #ebfbee;
+            color: #2f9e44;
+        }
+
+        .view-offer-btn {
+            background: #f1f2f6;
+            color: #2f3542;
+            padding: 8px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .view-offer-btn:hover {
+            background: #dfe4ea;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 24px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 380px;
+            text-align: center;
+        }
+
+        .show-modal {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-nav">
+        <a href="/profile" class="back-btn">
+            <i class="fas fa-arrow-left"></i> <span>Orqaga</span>
+        </a>
+    </div>
+
+    <div class="grid-layout">
+        <div class="card">
+            <div class="status-container">
+                {% if order[1] == 1 %}
+                <span class="status-badge active"><i class="fas fa-check-circle"></i> AKTIV</span>
+                {% else %}
+                <span class="status-badge inactive"><i class="fas fa-times-circle"></i> AKTIV EMAS</span>
+                {% endif %}
+            </div>
+
+            <h3>📦 Buyurtma ma'lumotlari</h3>
+
+            <div class="description-box">
+                <p>{{ order[0] }}</p>
+            </div>
+            <div class="offers-section">
+                <h4 class="section-title">
+                    <i class="fas fa-envelope-open-text" style="color: #1e90ff;"></i>
+                    <span>Kelgan takliflar ({{ offers|length }})</span>
+                </h4>
+
+                {% if offers %}
+                {% for offer in offers %}
+                <div class="offer-card">
+                    <div class="driver-info">
+                        <img src="{{ offer[4] if offer[4] else '/static/media/default_user.png' }}"
+                             class="driver-avatar">
+                        <div class="driver-details">
+                            <h5>{{ offer[3] }} <span
+                                    class="offer-status-label status-{{ offer[1] }}">{{ offer[1] }}</span></h5>
+                            <p class="offer-msg">{{ offer[2] }}</p>
+                        </div>
+                    </div>
+                    <a href="/offer/{{ offer[0] }}" class="view-offer-btn">
+                        Ko'rish
+                    </a>
+                </div>
+                {% endfor %}
+                {% else %}
+                <div style="text-align: center; padding: 20px; color: #a4b0be;">
+                    <i class="fas fa-inbox fa-2x" style="display: block; margin-bottom: 10px;"></i>
+                    <p>Hozircha hech qanday taklif kelmadi.</p>
+                </div>
+                {% endif %}
+            </div>
+
+            {% if order[1] == 1 %}
+            <div class="action-section" style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px;">
+                <h4 style="color: #2f3542; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-exclamation-triangle" style="color: #ff4757;"></i>
+                    <span>Xavfli hudud</span>
+                </h4>
+                <div class="mini-info">
+                    <i class="fas fa-info-circle" style="color: #CC5500;"></i>
+                    <span>Diqqat: Buyurtma o'chirilgach, haydovchilar unga taklif yubora olmaydilar!</span>
+                </div>
+
+                <button type="button" class="delete-btn" onclick="toggleModal(true)"
+                        style="width: 100%; background: #ff4757; color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 15px;">
+                    <i class="fas fa-trash-alt"></i>
+                    <span>Buyurtmani o'chirish</span>
+                </button>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<form id="deactivateForm" action="/delete-order/{{ order[2] }}" method="POST" style="display: none;"></form>
+
+<div id="customModal" class="modal-overlay">
+    <div class="modal-content">
+        <h3>Tasdiqlash</h3>
+        <p>Haqiqatdan ham ushbu buyurtmani o'chirib, aktiv emas holatiga o'tkazmoqchimisiz?</p>
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
+            <button type="button" onclick="confirmDeactivate()"
+                    style="background: #ff4757; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                Aktiv emas qilish
+            </button>
+            <button type="button" onclick="toggleModal(false)"
+                    style="background: #f1f2f6; border: none; padding: 12px; border-radius: 8px; cursor: pointer;">
+                Bekor qilish
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById('customModal');
+
+    function toggleModal(show) {
+        if (show) modal.classList.add('show-modal');
+        else modal.classList.remove('show-modal');
+    }
+
+    function confirmDeactivate() {
+        document.getElementById('deactivateForm').submit();
+    }
+</script>
+</body>
+</html>

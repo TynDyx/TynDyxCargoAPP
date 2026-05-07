@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TynDyx App - Update Profile</title>
+    <link rel="stylesheet" href="/static/update.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="profile-card">
+    <h1>Profilni yangilash</h1>
+
+    <form action="/profile/update" method="POST" enctype="multipart/form-data">
+        <div class="photo-container">
+            <div class="photo-wrapper">
+                <img src="{{ user[5] if user[5] else '/static/media/default_user.png' }}" id="preview">
+
+                <label for="photo" class="upload-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                        <circle cx="12" cy="13" r="4"/>
+                    </svg>
+                </label>
+            </div>
+
+            <input type="file" id="photo" name="photo" accept="image/*" onchange="previewImage(event)">
+
+            <input type="hidden" name="remove_photo" id="remove_photo" value="false">
+
+            <p class="photo-text">Profil rasmini o'zgartirish</p>
+
+            <button type="button"
+                    id="delete-photo-btn"
+                    class="delete-btn"
+                    onclick="resetToDefault()"
+                    style="{{ 'display: block;' if user[5] else 'display: none;' }}">
+                Rasmni o'chirish
+            </button>
+        </div>
+
+        <div class="input-group">
+            <label>To'liq ism</label>
+            <input type="text" name="full_name" value="{{ user[1] }}" placeholder="Ismingizni kiriting" required>
+        </div>
+
+        <div class="input-group">
+            <label>Telefon (O'zgartirib bo'lmaydi)</label>
+            <input type="text" value="{{ user[2] }}" readonly class="readonly-field">
+        </div>
+
+        <div class="input-group">
+            <label>Men haqimda</label>
+            <textarea name="desc" rows="3" placeholder="O'zingiz haqingizda qisqacha...">{{ user[4] if user[4] else '' }}</textarea>
+        </div>
+
+        <div class="button-group">
+            <a href="/profile" class="btn btn-cancel">Bekor qilish</a>
+            <button type="submit" class="btn btn-save">Saqlash</button>
+        </div>
+    </form>
+</div>
+<script>
+    const DEFAULT_IMAGE = '/static/media/default_user.png';
+    const previewImg = document.getElementById('preview');
+    const removePhotoInput = document.getElementById('remove_photo');
+    const deleteBtn = document.getElementById('delete-photo-btn');
+    const fileInput = document.getElementById('photo');
+
+    function previewImage(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                previewImg.src = reader.result;
+                removePhotoInput.value = "false"; // Yangi rasm yuklanyapti
+                deleteBtn.style.display = "block"; // O'chirish tugmasini ko'rsatish
+            }
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function resetToDefault() {
+        previewImg.src = DEFAULT_IMAGE;
+
+        fileInput.value = "";
+
+        removePhotoInput.value = "true";
+
+        deleteBtn.style.display = "none";
+    }
+</script>
+</body>
+</html>

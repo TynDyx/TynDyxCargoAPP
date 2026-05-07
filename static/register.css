@@ -1,0 +1,182 @@
+
+:root {
+    --bg-color: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --input-bg: #ffffff;
+    --input-border: #e2e8f0;
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --primary-shadow: rgba(118, 75, 162, 0.2);
+    --focus-ring: rgba(102, 126, 234, 0.1);
+    --shadow-main: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+body.dark {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --input-bg: #0f172a;
+    --input-border: #334151;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+
+.auth-card {
+    background: var(--card-bg);
+    width: 100%;
+    max-width: 380px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-main);
+    text-align: center;
+}
+
+.auth-card h2 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 25px;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.input-wrapper, .select-wrapper, .phone-input-group {
+    position: relative;
+    border-radius: 10px;
+}
+
+.input-icon {
+    position: absolute;
+    left: 15px;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.input-wrapper input, .select-wrapper select, .phone-raw, .country-code {
+    font-size: 14px;
+}
+
+.input-wrapper input, .select-wrapper select {
+    padding: 12px 12px 12px 42px;
+    border: 1.5px solid var(--input-border);
+    background: var(--input-bg);
+    color: var(--text-main);
+    width: 100%;
+    outline: none;
+    transition: 0.2s;
+}
+
+
+.phone-input-group {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid var(--input-border);
+    background: var(--input-bg);
+}
+
+.country-prefix {
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.country-code {
+    border: none;
+    background: transparent;
+    padding: 12px 5px;
+    font-weight: 700;
+    color: var(--text-main);
+    outline: none;
+}
+
+.phone-raw {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 12px;
+    color: var(--text-main);
+    outline: none;
+}
+
+.btn-main {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 10px;
+    background: var(--primary-gradient);
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px var(--primary-shadow);
+}
+
+.btn-social {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 10px;
+    border: 1px solid var(--input-border);
+    background: transparent;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+}
+.divider {
+    margin: 20px 0;
+    border-bottom: 1px solid var(--input-border);
+    position: relative;
+}
+
+.divider span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--card-bg);
+    padding: 0 10px;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.register-link {
+    margin-top: 20px;
+    font-size: 13px;
+}
+
+.theme-toggle-btn {
+    margin-top: 20px;
+    background: none;
+    border: 1px solid var(--input-border);
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    cursor: pointer;
+    color: var(--text-main);
+}

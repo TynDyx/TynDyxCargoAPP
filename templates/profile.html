@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TynDyx Cargo - My Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/dashboard.css">
+
+    <style>
+        :root {
+            --card-bg: #ffffff;
+            --sidebar-bg: #ffffff;
+            --main-bg: #f8fafc;
+            --border-color: #e2e8f0;
+            --text-main: #1e293b;
+        }
+
+        body.dark {
+            --card-bg: #1e293b;
+            --sidebar-bg: #1e293b;
+            --main-bg: #0f172a;
+            --border-color: #334155;
+            --text-main: #f8fafc;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--main-bg);
+            color: var(--text-main);
+            transition: all 0.3s ease;
+        }
+
+        .profile-container {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 25px;
+            padding: 20px 0;
+        }
+
+        .profile-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-img-wrapper {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            padding: 5px;
+            background: linear-gradient(45deg, #4f46e5, #9333ea);
+        }
+
+        .profile-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: var(--card-bg);
+        }
+
+        .role-tag {
+            background: rgba(79, 70, 229, 0.1);
+            color: #4f46e5;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .info-group {
+            text-align: left;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .info-label {
+            font-size: 0.8rem;
+            color: #64748b;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .btn-edit {
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: 600;
+            margin-top: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-edit:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .main-content-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .bio-section {
+            background: rgba(79, 70, 229, 0.03);
+            border-left: 4px solid #4f46e5;
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 30px;
+        }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-active {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-inactive {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 12px;
+            color: #64748b;
+            font-weight: 500;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table td {
+            padding: 15px 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 900px) {
+            .profile-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="dark">
+
+<div class="container">
+    <header class="topbar">
+        <div class="logo">
+            <img src="/static/media/log.png" alt="TynDyx Logo" style="height: 40px;">
+            <h1 class="brand-name" style="display:inline; margin-left:10px;">TynDyx Cargo<span class="logo-dot">.</span>
+            </h1>
+        </div>
+
+        <div class="topbar-actions">
+            <button class="btn icon-btn" id="theme-toggle">☀️</button>
+            <a href="/dashboard" class="btn"><i class="fas fa-th-large"></i> Dashboard</a>
+            <a href="/logout" class="btn logout-btn"><i class="fas fa-sign-out-alt"></i></a>
+        </div>
+    </header>
+
+    <main class="profile-container">
+        <aside class="profile-card">
+            <div class="profile-img-wrapper">
+                <img src="{{ user[6] if user[6] else '/static/media/default_user.png' }}" alt="Profile">
+            </div>
+            <span class="role-tag"><i class="fas fa-shield-alt"></i> {{ user[3]|capitalize }}</span>
+            <h2 class="username" style="margin: 0;">{{ user[1] }}</h2>
+
+            <div class="info-group">
+                <span class="info-label">Phone Number</span>
+                <span class="info-value">{{ user[2] }}</span>
+            </div>
+
+            <a href="/profile/update/" style="text-decoration: none;">
+                <button class="btn-edit"><i class="far fa-edit"></i> Edit Profile</button>
+            </a>
+        </aside>
+        <div class="profile-main">
+            <div class="main-content-card">
+                <h3 style="margin-top: 0;"><i class="fas fa-info-circle" style="color: #4f46e5;"></i> Bio</h3>
+                <div class="bio-section">
+                    <p style="margin: 0; color: var(--text-muted);">{{ user[4] if user[4] else "No description
+                        provided." }}</p>
+                </div>
+                {% if user[3] == 'manager' %}
+                <div class="section-header"
+                     style="display: flex; justify-content: space-between; align-items: center; margin-top: 40px;">
+                    <h3 style="margin: 0;"><i class="fas fa-box" style="color: #4f46e5;"></i> My Orders</h3>
+                    <span class="order-count-badge"
+                          style="background: #4f46e5; color: white; padding: 2px 10px; border-radius: 10px; font-size: 0.8rem;">{{ orders|length }} total</span>
+                </div>
+
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for order in orders %}
+                    <tr>
+                        <td>#{{ loop.index }}</td>
+                        <td>
+                            <div style="max-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                {{ order[0] }}
+                            </div>
+                        </td>
+                        <td>
+                                <span class="status-badge {{ 'badge-active' if order[1] else 'badge-inactive' }}">
+                                        {{ 'Active' if order[1] else 'Inactive' }}
+                                </span>
+                        </td>
+                        <td><a href="/profile/{{ order[2] }}" class="details-link"
+                               style="color: #2563eb; text-decoration: none; font-weight: 600;">View Details</a></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+                {% if user[3] == 'driver' %}
+                <h3 style="margin-top: 40px;"><i class="fas fa-paper-plane" style="color: #4f46e5;"></i> Sent Offers
+                </h3>
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Message</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for offer in offers %}
+                    <tr>
+                        <td>#{{ offer[3] }}</td>
+                        <td>{{ offer[2] }}</td>
+                        <td>
+                                <span class="status-badge {{ 'badge-active' if offer[1] == 'accepted' else 'badge-inactive' }}">
+                                    {{ offer[1]|capitalize }}
+                                </span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+</div>
+<script>
+    const toggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    toggle.addEventListener('click', () => {
+        body.classList.toggle('dark');
+        const isDark = body.classList.contains('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        toggle.textContent = isDark ? '☀️' : '🌙';
+    });
+
+    if (localStorage.getItem('theme') === 'light') {
+        body.classList.remove('dark');
+        toggle.textContent = '🌙';
+    }
+</script>
+</body>
+</html>

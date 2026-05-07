@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TynDyx - Cargo Dashboard</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="dark">
+
+<div class="container">
+    <header class="topbar">
+        <div class="logo">
+            <img src="/static/media/log.png" alt="TynDyx Logo">
+        </div>
+
+        <div class="topbar-actions">
+            <button class="btn icon-btn" id="theme-toggle">☀️</button>
+
+            <div class="notif-wrapper">
+                <button class="btn" id="notif-btn">
+                    <i class="fas fa-bell"></i> Notifications
+                    {% if notif_count > 0 %}
+                    <span class="pulse-dot"></span>
+                    {% endif %}
+                </button>
+
+                <div id="notif-window" class="notif-dropdown">
+                    <div class="notif-header">
+                        <span>Bildirishnomalar</span>
+                    </div>
+                    <div class="notif-list">
+                        {% if notifications %}
+                        {% for n in notifications %}
+                        {# n[0] - ID, n[1] - Message, n[2] - OrderID, n[3] - Time #}
+                        <div class="notif-item unread">
+                            <span class="status-dot"></span>
+                            <div class="notif-body">
+                                <p>{{ n[1] }}</p>
+                                <div class="notif-meta">
+                                    <small><i class="far fa-clock"></i> {{ n[3] }}</small>
+                                    <a href="/offer/{{ n[0] }}">Ko'rish</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="empty-msg">Yangi xabarlar yo'q</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <a href="/profile" class="btn"><i class="fas fa-user"></i> Profile</a>
+            <a href="/logout" class="btn logout-btn"><i class="fas fa-sign-out-alt"></i></a>
+
+            {% if user.role == "manager" %}
+            <a href="/create-order" class="btn create-btn">+ Create Order</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <main class="dashboard-content">
+        <div class="content-header">
+            <h2>📦 Orders Dashboard</h2>
+        </div>
+
+        <div class="orders-grid">
+            {% if orders %}
+            {% for order in orders %}
+            <div class="order-card">
+                <div class="card-top">
+                    <span class="order-number">#ID-{{ loop.index }}</span>
+                    <span class="badge {% if order[2] %}active{% else %}inactive{% endif %}">
+                            {{ "Active" if order[2] else "Inactive" }}
+                    </span>
+                </div>
+                <div class="card-main">
+                    <p class="order-text">{{ order[1] }}</p>
+                    <div class="contact-box">
+                        <span>📞 Aloqa:</span>
+                        <a href="https://t.me/{{order[0]}}" target="_blank">{{ order[0] }}</a>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="/order/{{ loop.index }}" class="details-link">View Details</a>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="no-data">
+                <i class="fa fa-box-open"></i>
+                <p>Hozircha buyurtmalar yo'q.</p>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+</div>
+
+<script>
+    const notifBtn = document.getElementById('notif-btn');
+    const notifWindow = document.getElementById('notif-window');
+
+    notifBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        notifWindow.classList.toggle('show');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!notifWindow.contains(e.target) && e.target !== notifBtn) {
+            notifWindow.classList.remove('show');
+        }
+    });
+
+    const toggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    toggle.addEventListener('click', () => {
+        body.classList.toggle('dark');
+        const isDark = body.classList.contains('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        toggle.textContent = isDark ? '☀️' : '🌙';
+    });
+
+    if (localStorage.getItem('theme') === 'light') {
+        body.classList.remove('dark');
+        toggle.textContent = '🌙';
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+:root {
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --bg-soft: #f8fafc;
+    --card-bg: #ffffff;
+    --text-dark: #1e293b;
+    --text-gray: #64748b;
+    --border: #e2e8f0;
+    --error: #ef4444;
+    --shadow-premium: 0 20px 25px -5px rgba(0, 0, 0, 0.04), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+}
+
+body {
+    background-color: var(--bg-soft);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-card {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 28px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: var(--shadow-premium);
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.login-card h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 30px;
+    letter-spacing: -1px;
+}
+
+/* Xatolik xabari - endi yanada chiroyli */
+.error-alert {
+    background-color: #fff1f2;
+    color: var(--error);
+    padding: 12px 16px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid #fee2e2;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.input-group {
+    position: relative;
+    width: 100%;
+}
+
+/* Ikonkalarni to'g'ri o'rtaga joylashtirish */
+.input-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-gray);
+    font-size: 18px;
+    z-index: 10;
+}
+
+input {
+    width: 100%;
+    padding: 14px 16px 14px 48px; /* Ikonka uchun chapdan joy */
+    font-size: 16px;
+    border-radius: 16px;
+    border: 2px solid #f1f5f9;
+    background: #f1f5f9;
+    color: var(--text-dark);
+    outline: none;
+    transition: all 0.2s ease;
+    box-sizing: border-box; /* Element kengayib ketmasligi uchun */
+}
+
+input:focus {
+    background: #fff;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+}
+
+/* Telefon raqami qismi - rasmda buzilgan qismini to'g'irlaymiz */
+.phone-input-container {
+    display: flex;
+    align-items: center;
+    background: #f1f5f9;
+    border-radius: 16px;
+    border: 2px solid #f1f5f9;
+    transition: all 0.2s ease;
+    overflow: hidden;
+}
+
+.phone-input-container:focus-within {
+    background: #fff;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+}
+
+.country-code-select {
+    padding: 0 12px;
+    border: none;
+    border-right: 1px solid var(--border);
+    background: transparent;
+    font-weight: 600;
+    color: var(--text-dark);
+    height: 50px;
+    outline: none;
+    cursor: pointer;
+}
+
+.phone-input {
+    padding-left: 12px !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Tugma dizayni */
+.btn-submit {
+    width: 100%;
+    background: var(--primary);
+    color: white;
+    padding: 16px;
+    border: none;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.2s ease;
+    box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+}
+
+.btn-submit:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 12px 20px -3px rgba(79, 70, 229, 0.4);
+}
+
+.btn-submit:active {
+    transform: scale(0.98);
+}
+
+.forgot-password {
+    font-size: 14px;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.register-text {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--text-gray);
+}
+
+.register-text a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 700;
+}

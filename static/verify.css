@@ -1,0 +1,169 @@
+/* Verifikatsiya sahifasi uchun maxsus stillar */
+
+.verify-page {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.verify-card {
+    max-width: 420px !important;
+    padding: 2.5rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.verify-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.verify-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(37, 99, 235, 0.1);
+    color: #2563eb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto 1rem;
+}
+
+.verify-subtitle {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-top: 0.5rem;
+    line-height: 1.5;
+}
+
+/* Yuklash hududi */
+.upload-section {
+    margin-bottom: 1.5rem;
+}
+
+#license-input {
+    display: none;
+}
+
+.drop-zone {
+    display: block;
+    border: 2px dashed #cbd5e1;
+    border-radius: 16px;
+    padding: 2rem 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #ffffff;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.drop-zone:hover {
+    border-color: #2563eb;
+    background: #f8fafc;
+}
+
+.drop-zone.has-image {
+    border-style: solid;
+    border-color: #10b981;
+}
+
+.cloud-icon {
+    font-size: 3rem;
+    color: #2563eb;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+}
+
+.primary-text {
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.25rem;
+}
+
+.secondary-text {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.image-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: none;
+    border-radius: 12px;
+}
+
+/* Qo'shimcha ma'lumot */
+.guidelines {
+    background: #fffbeb;
+    border-left: 4px solid #f59e0b;
+    padding: 12px;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+}
+
+.guidelines p {
+    font-size: 0.8rem;
+    color: #92400e;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.submit-verify {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.verify-footer {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.back-link {
+    text-decoration: none;
+    color: #64748b;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: #1e293b;
+}
+
+.back-link i {
+    margin-right: 5px;
+}
+
+.error-alert {
+    background-color: #fef2f2;
+    border: 1px solid #fee2e2;
+    border-radius: 12px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+    color: #991b1b;
+    font-size: 0.85rem;
+    animation: shake 0.5s ease-in-out;
+}
+
+.error-alert i {
+    font-size: 1.2rem;
+    margin-top: 2px;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}

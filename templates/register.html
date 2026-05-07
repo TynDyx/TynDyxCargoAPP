@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register - Cargo App</title>
+    <link rel="stylesheet" href="/static/register.css">
+    <link rel="stylesheet" href="/static/theme.css">
+</head>
+<body>
+<link rel="stylesheet" href="/static/register.css">
+
+<div class="auth-container">
+    <div class="auth-card">
+        <h2>Ro'yhatdan o'tish</h2>
+
+        <form action="/register" method="post" id="registerForm">
+            <div class="input-wrapper">
+                <i class="fas fa-user input-icon"></i>
+                <input type="text" name="full_name" placeholder="To'liq ismingiz" required>
+            </div>
+
+            <div class="phone-input-group">
+                <div class="country-prefix">
+                    <i class="fas fa-phone"></i>
+                    <select name="country_code" class="country-code">
+                        <option value="+998">UZ +998</option>
+                    </select>
+                </div>
+                <input type="tel" id="phone_raw" class="phone-raw" placeholder="901234567" pattern="[0-9]{9}" required>
+                <input type="hidden" name="phone" id="full_phone">
+            </div>
+
+            <div class="input-wrapper">
+                <i class="fas fa-lock input-icon"></i>
+                <input type="password" name="password" placeholder="Parol kiriting" required>
+            </div>
+
+            <div class="select-wrapper">
+                <i class="fas fa-id-badge input-icon"></i>
+                <select name="role" required>
+                    <option value="" disabled selected>Kasbingizni tanlang</option>
+                    <option value="driver">Haydovchi</option>
+                    <option value="manager">Menejer</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-main">
+                <i class="fas fa-user-plus"></i> Ro'yxatdan o'tish
+            </button>
+        </form>
+
+
+
+        <p class="register-link" style="margin-top: 25px;">
+            Akkaunt yaratilib bo'linganmi? <a href="/login" style="color: #667eea; font-weight: 600; text-decoration: none;">Login</a>
+        </p>
+
+        <div class="theme-switch-container" style="margin-top: 20px; display: flex; justify-content: center;">
+            <button type="button" id="theme-toggle" class="theme-toggle-btn"
+                    style="background: none; border: 1px solid var(--input-border); padding: 8px 15px; border-radius: 20px; cursor: pointer; color: var(--text-main);">
+                <span id="theme-icon">🌙</span> Dark Mode
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Raqamni birlashtirish
+    document.getElementById('registerForm').addEventListener('submit', function() {
+        const code = document.querySelector('[name="country_code"]').value;
+        const phone = document.getElementById('phone_raw').value;
+        document.getElementById('full_phone').value = code + phone;
+    });
+
+    // Theme logic (Login bilan bir xil ishlashi uchun)
+    const themeToggle = document.getElementById('theme-toggle');
+    function updateTheme(isDark) {
+        document.body.classList.toggle('dark', isDark);
+        document.getElementById('theme-icon').textContent = isDark ? '☀️' : '🌙';
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+    themeToggle.addEventListener('click', () => updateTheme(!document.body.classList.contains('dark')));
+    if (localStorage.getItem('theme') === 'dark') updateTheme(true);
+</script>
+</body>
+</html>

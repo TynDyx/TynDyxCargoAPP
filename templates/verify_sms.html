@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS Tasdiqlash - TynDyx</title>
+    <link rel="stylesheet" href="/static/verify_sms.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<div class="sms-container">
+    <div class="sms-card">
+        <div class="sms-header">
+            <div class="icon-circle">
+                <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h2>SMS Tasdiqlash</h2>
+            <p>Tasdiqlash kodi <b>{{ phone }}</b> raqamiga yuborildi</p>
+        </div>
+
+        {% if error %}
+        <div class="error-msg">
+            <i class="fas fa-exclamation-circle"></i> {{ error }}
+        </div>
+        {% endif %}
+
+        <form action="/verify-sms-process" method="POST">
+            <div class="otp-input-wrapper">
+                <input type="text" name="otp" id="otp" maxlength="4" placeholder="0000" pattern="\d{4}" required autocomplete="one-time-code">
+            </div>
+
+            <button type="submit" class="btn-verify">
+                Tasdiqlash <i class="fas fa-arrow-right"></i>
+            </button>
+        </form>
+
+        <div class="sms-footer">
+            <p>Kod kelmadimi? <span id="timer-text">Qayta yuborish: <span id="timer">60</span>s</span></p>
+            <a href="/cancel-verify" class="btn-cancel">Bekor qilish</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    let seconds = 60;
+    const timerDisplay = document.getElementById('timer');
+    const timerText = document.getElementById('timer-text');
+
+    const countdown = setInterval(() => {
+        seconds--;
+        timerDisplay.innerText = seconds;
+        if (seconds <= 0) {
+            clearInterval(countdown);
+            timerText.innerHTML = '<a href="/verify_sms" onclick="location.reload()">Qayta yuborish</a>';
+        }
+    }, 1000);
+</script>
+
+</body>
+</html>

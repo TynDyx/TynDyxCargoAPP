@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guvohnomani tasdiqlash - TynDyx</title>
+    <link rel="stylesheet" href="/static/register.css">
+    <link rel="stylesheet" href="/static/verify.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="verify-page">
+
+<div class="auth-container">
+    <div class="auth-card verify-card">
+
+        {% if error %}
+        <div class="error-alert">
+            <i class="fas fa-exclamation-circle"></i>
+            <div>
+                <strong>Xatolik!</strong><br>
+                <span>{{ error }}</span>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="verify-header">
+            <div class="verify-icon">
+                <i class="fas fa-id-card"></i>
+            </div>
+            <h2>Haydovchini tasdiqlash</h2>
+            <p class="verify-subtitle">Haydovchilik guvohnomangizni yuklang. Sizda <b>{{ remaining }} ta</b> urinish
+                qoldi.</p>
+        </div>
+
+        <form action="/verify-process" method="POST" enctype="multipart/form-data" id="verifyForm">
+            <div class="upload-section">
+                <input type="file" id="license-input" name="license_photo" accept="image/*" required
+                       onchange="handleFileSelect(event)">
+
+                <label for="license-input" class="drop-zone" id="drop-zone">
+                    <div class="upload-content" id="upload-content">
+                        <div class="cloud-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <p class="primary-text">Rasmni yuklash uchun bosing</p>
+                        <p class="secondary-text">PNG, JPG (Maks. 5MB)</p>
+                    </div>
+                    <img id="image-preview" class="image-preview" src="#" alt="Preview">
+                </label>
+            </div>
+
+            <div class="guidelines">
+                <p><i class="fas fa-info-circle"></i> Rasm burchaklari kesilmagan va yozuvlar tiniq bo'lishi shart.</p>
+            </div>
+
+            <button type="submit" class="btn-main submit-verify">
+                <i class="fas fa-shield-alt"></i> Tekshirishga yuborish
+            </button>
+        </form>
+
+        <div class="verify-footer">
+            <a href="/cancel-verify" class="back-link"
+               onclick="return confirm('Ro\'yxatdan o\'tish bekor qilinsinmi? Ma\'lumotlaringiz o\'chib ketadi.')">
+                <i class="fas fa-arrow-left"></i> Bekor qilish va qaytish
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function handleFileSelect(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            const preview = document.getElementById('image-preview');
+            const content = document.getElementById('upload-content');
+            const dropZone = document.getElementById('drop-zone');
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+                content.style.display = 'none';
+                dropZone.classList.add('has-image');
+            }
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+</body>
+</html>

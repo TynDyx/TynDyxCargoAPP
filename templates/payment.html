@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <link rel="stylesheet" href="/static/creating.css">
+    <style>
+        .checkout-card { text-align: center; padding: 40px; }
+        .price-tag { font-size: 48px; font-weight: bold; color: #27ae60; margin: 20px 0; }
+        .payment-methods { display: flex; gap: 10px; justify-content: center; margin-top: 30px; }
+        .pay-btn { width: 100%; margin-top: 20px; background: #27ae60 !important; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card checkout-card">
+        <h2>To'lovni tasdiqlash</h2>
+        <p>Order turi: <strong>{{ "Vaqtli" if order.order_type == "timed" else "Oddiy" }}</strong></p>
+
+        <div class="price-tag">{{ "{:,}".format(order.price) }} so'm</div>
+
+        <div class="info-box" style="text-align: left;">
+            <p><strong>Tavsif:</strong> {{ order.description[:100] }}...</p>
+        </div>
+
+        <form action="/confirm-payment" method="POST">
+            <div class="payment-methods">
+                <label><input type="radio" name="method" value="card" checked> Karta orqali</label>
+                <label><input type="radio" name="method" value="balance"> Ichki balans</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary pay-btn">To'lovni amalga oshirish</button>
+            <a href="/create-order" style="display:block; margin-top:15px; color:#7f8c8d;">Bekor qilish</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>

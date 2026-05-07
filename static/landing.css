@@ -1,0 +1,25 @@
+body {
+    background: linear-gradient(135deg, #74ebd5, #acb6e5);
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 60px 20px;
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.btn {
+    padding: 12px 28px;
+    border-radius: 40px;
+    background: #6C63FF;
+    color: white;
+    text-decoration: none;
+}
